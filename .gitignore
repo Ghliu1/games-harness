@@ -1,0 +1,14 @@
+node_modules/
+dist/
+out/
+*.log
+.DS_Store
+.env
+.env.local
+
+# Local runtime config / project registry (machine-specific absolute paths)
+config/
+
+# Unity generates .meta files for the bridge/starter sources once imported;
+# we ship the raw .cs files and let Unity create metas in the user's project.
+*.meta

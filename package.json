@@ -1,0 +1,33 @@
+{
+  "name": "gameforge",
+  "version": "0.1.0",
+  "description": "GameForge — an AI-native desktop harness for building real video games with Claude using the Unity game engine.",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "GAMEFORGE_DEVTOOLS=1 electron .",
+    "lint": "node scripts/check-syntax.mjs",
+    "test": "node --test"
+  },
+  "keywords": [
+    "game-engine",
+    "unity",
+    "ai",
+    "claude",
+    "electron",
+    "gamedev"
+  ],
+  "author": "GameForge",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.65.0",
+    "chokidar": "^4.0.3"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

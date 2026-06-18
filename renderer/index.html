@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GameForge — Unity</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">🎮 GameForge <span class="sub">Unity</span></div>
+      <div class="project-controls">
+        <select id="project-select" title="Open project"></select>
+        <button id="new-project" class="btn">＋ New game</button>
+        <button id="add-project" class="btn ghost" title="Add an existing Unity project">Add existing</button>
+      </div>
+      <div class="spacer"></div>
+      <div id="unity-pill" class="status idle" title="Unity Editor connection">Unity: offline</div>
+      <div id="agent-status" class="status idle">Ready</div>
+      <button id="settings-btn" class="btn ghost">⚙ Settings</button>
+    </header>
+
+    <main class="layout">
+      <!-- Left: project files -->
+      <aside class="panel files">
+        <div class="panel-head">Project Files</div>
+        <div id="file-tree" class="file-tree"></div>
+      </aside>
+
+      <!-- Center: Unity game view + console -->
+      <section class="panel preview">
+        <div class="panel-head">
+          <span>Unity Game View</span>
+          <span class="head-actions">
+            <button id="play-btn" class="btn ghost small" title="Enter play mode">▶ Play</button>
+            <button id="stop-btn" class="btn ghost small" title="Exit play mode">■ Stop</button>
+            <button id="shot-btn" class="btn ghost small" title="Capture screenshot">⟳ Capture</button>
+          </span>
+        </div>
+        <div class="preview-stage">
+          <img id="unity-shot" alt="Unity game view" />
+          <div id="unity-empty" class="unity-empty">
+            <h1>Unity not connected</h1>
+            <p>Open the active project in the Unity Editor. The GameForge bridge starts
+               automatically and this view will show the live Game view.</p>
+          </div>
+        </div>
+        <div class="console">
+          <div class="panel-head small">Unity Console</div>
+          <div id="console-log" class="console-log"></div>
+        </div>
+      </section>
+
+      <!-- Right: chat -->
+      <section class="panel chat">
+        <div class="panel-head">Build with Claude</div>
+        <div id="chat-log" class="chat-log"></div>
+        <form id="chat-form" class="chat-form">
+          <textarea id="chat-input" rows="3"
+            placeholder="Describe the game or change you want… (⌘/Ctrl+Enter to send)"></textarea>
+          <div class="chat-actions">
+            <button type="button" id="reset-chat" class="btn ghost small">New chat</button>
+            <button type="submit" id="send-btn" class="btn primary">Send</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- New project modal -->
+    <div id="new-modal" class="modal hidden">
+      <div class="modal-card">
+        <h2>New Unity game</h2>
+        <label>Name<input id="new-name" type="text" placeholder="my-awesome-game" /></label>
+        <label>Location
+          <div class="row">
+            <input id="new-location" type="text" placeholder="Choose a parent folder…" readonly />
+            <button id="new-browse" class="btn">Browse</button>
+          </div>
+        </label>
+        <p class="hint">GameForge scaffolds a minimal Unity project and installs the editor bridge.
+          Open it in Unity Hub afterward (it appears as a project on disk).</p>
+        <div class="modal-actions">
+          <button id="new-cancel" class="btn ghost">Cancel</button>
+          <button id="new-create" class="btn primary">Create</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings modal -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-card">
+        <h2>Settings</h2>
+        <label>Anthropic API key<input id="api-key" type="password" placeholder="sk-ant-…" /></label>
+        <p class="hint">Used to talk to Claude. You can also set the
+          <code>ANTHROPIC_API_KEY</code> environment variable before launching.</p>
+        <div class="modal-actions">
+          <button id="settings-cancel" class="btn ghost">Close</button>
+          <button id="settings-save" class="btn primary">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="renderer.js"></script>
+  </body>
+</html>
